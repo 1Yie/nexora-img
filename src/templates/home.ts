@@ -74,7 +74,7 @@ export function generateHomePage(): string {
     .copyright a { color: #9a9a9a; text-decoration: none; transition: color 0.3s ease; }
     .copyright a:hover { color: #5a5a5a; }
 
-    .powered-by { font-family: "Courier New", monospace; padding: 0 2rem 2rem; font-size: 0.75rem; color: #9a9a9a; text-align: center; }
+    .powered-by { font-family: "Courier New", monospace; padding: 0.25rem 2rem; font-size: 0.75rem; color: #9a9a9a; text-align: center; }
     .powered-by a { color: #9a9a9a; text-decoration: none; transition: color 0.3s ease; }
     .powered-by a:hover { color: #5a5a5a; }
 
@@ -144,6 +144,7 @@ export function generateHomePage(): string {
 
   <p class="copyright">Copyright © ${currentYear} <a href="https://ichiyo.in/" target="_blank" rel="noopener noreferrer">ichiyo</a></p>
   <p class="powered-by">Powered by <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare</a></p>
+  <p class="powered-by">Open Source on <a href="https://github.com/1Yie/nexora-img" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 
   <script>
     const images = ${imagesList};

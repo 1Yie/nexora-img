@@ -44,12 +44,19 @@ export function generateImageViewPage(filePath: string): string {
       gap: 0.5rem;
       z-index: 10;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .back-link:hover {
       background: rgba(255, 255, 255, 1);
-      transform: translateX(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .back-link.hidden {
+      opacity: 0;
+      transform: translateY(calc(-100% - 2rem));
+      pointer-events: none;
     }
 
     .image-container {
@@ -100,19 +107,25 @@ export function generateImageViewPage(filePath: string): string {
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       border-radius: 4px;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
       position: relative;
+      cursor: zoom-in;
     }
 
     img.loaded {
       opacity: 1;
     }
 
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
     .image-info {
       position: fixed;
       bottom: 2rem;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(0);
       color: #1a1a1a;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
@@ -126,6 +139,7 @@ export function generateImageViewPage(filePath: string): string {
       cursor: pointer;
       user-select: none;
       transition: all 0.3s ease;
+      opacity: 1;
     }
 
     .image-info:hover {
@@ -134,14 +148,19 @@ export function generateImageViewPage(filePath: string): string {
     }
 
     .image-info:active {
-      transform: translateX(-50%) scale(0.98);
+      transform: translateX(-50%) translateY(0) scale(0.98);
+    }
+
+    .image-info.hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(calc(100% + 2rem));
+      pointer-events: none;
     }
 
     .tooltip {
       position: fixed;
-      bottom: calc(2rem + 1rem + 1.5rem + 0.5rem);
       left: 50%;
-      transform: translateX(-50%) translateY(10px);
+      transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -152,14 +171,13 @@ export function generateImageViewPage(filePath: string): string {
       white-space: nowrap;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1000;
     }
 
     .tooltip.show {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
     }
 
     .tooltip::after {
@@ -208,6 +226,8 @@ export function generateImageViewPage(filePath: string): string {
   <script>
     const mainImage = document.getElementById('mainImage');
     const skeleton = document.getElementById('skeleton');
+    const backLink = document.querySelector('.back-link');
+    const imageInfo = document.querySelector('.image-info');
 
     mainImage.addEventListener('load', () => {
       mainImage.classList.add('loaded');
@@ -219,9 +239,26 @@ export function generateImageViewPage(filePath: string): string {
       mainImage.style.opacity = '1';
     });
 
+    // 鼠标悬浮图片时隐藏返回按钮和底部信息
+    mainImage.addEventListener('mouseenter', () => {
+      backLink.classList.add('hidden');
+      imageInfo.classList.add('hidden');
+    });
+
+    mainImage.addEventListener('mouseleave', () => {
+      backLink.classList.remove('hidden');
+      imageInfo.classList.remove('hidden');
+    });
+
     function copyToClipboard() {
       const url = 'https://${BASE_URL}/${filePath}?raw=true';
       const tooltip = document.getElementById('tooltip');
+      const imageInfoRect = imageInfo.getBoundingClientRect();
+
+      // 动态计算 tooltip 位置：在 image-info 上方
+      const tooltipTop = imageInfoRect.top - tooltip.offsetHeight - 10;
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = tooltipTop + 'px';
 
       navigator.clipboard.writeText(url).then(() => {
         tooltip.classList.add('show');

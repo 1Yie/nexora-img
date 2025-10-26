@@ -378,6 +378,7 @@ export function generateErrorPage(status: number, title: string): string {
 
     <p class="copyright">Copyright © ${currentYear} ichiyo</p>
     <p class="powered-by">Powered by <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare</a></p>
+    <p class="powered-by">Open Source on <a href="https://github.com/1Yie/nexora-img" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </div>
 </body>
 </html>
