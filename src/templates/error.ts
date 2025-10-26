@@ -304,6 +304,16 @@ export function generateErrorPage(status: number, title: string): string {
       h2 {
         font-size: 1.1rem;
       }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
     }
 
     @media (prefers-color-scheme: dark) {
