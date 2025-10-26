@@ -1,6 +1,6 @@
 # Nexora Image Hosting Service
 
-基于 Cloudflare Workers 和 R2 存储的图片托管服务，使用 TypeScript 重构。
+基于 Cloudflare Workers 和 R2 存储的图片托管服务。
 
 ## 项目结构
 
@@ -143,7 +143,7 @@ npm run deploy
 npm test
 ```
 
-## API 端点
+## API
 
 ### GET `/`
 返回主页 HTML
@@ -198,7 +198,3 @@ npm test
 2. 部署前先在本地测试
 3. 注意修改所有域名相关配置
 4. 生产环境建议启用 Smart Placement
-
-## 许可证
-
-本项目基于原有的 worker.js 重构而成。
