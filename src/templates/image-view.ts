@@ -1,10 +1,10 @@
-import { BASE_URL } from "../constants";
+import { BASE_URL } from '../constants';
 
 /**
  * 生成图片查看页面 HTML
  */
 export function generateImageViewPage(filePath: string): string {
-  return `
+	return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +13,7 @@ export function generateImageViewPage(filePath: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${filePath} - Nexora</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+ * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;

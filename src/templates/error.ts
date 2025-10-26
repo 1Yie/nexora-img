@@ -1,46 +1,45 @@
-import { HelpText } from "../types";
-import { getCurrentYear } from "../utils/format";
-import { NAV_LINKS } from "../constants";
+import { HelpText } from '../types';
+import { getCurrentYear } from '../utils/format';
+import { NAV_LINKS } from '../constants';
 
 /**
  * 获取错误页面的帮助文本
  */
 function getHelpText(status: number): HelpText {
-  const statusStr = String(status);
-  switch (statusStr) {
-    case "404":
-      return {
-        title: "Why am I seeing this page?",
-        content:
-          "The file you are trying to access does not exist. It may have been deleted, moved to another location, or the URL may be incorrect.",
-      };
-    case "403":
-      return {
-        title: "Why is access denied?",
-        content:
-          "This resource is protected by hotlink protection and can only be accessed from authorized domains. If you are accessing from an external link, please visit the original website directly.",
-      };
-    case "500":
-      return {
-        title: "Server error",
-        content:
-          "The server encountered an error while processing your request. This is usually temporary. Please try again later, or contact the administrator if the problem persists.",
-      };
-    default:
-      return {
-        title: "Page unavailable",
-        content:
-          "The page is temporarily unavailable. Please check your network connection or try again later.",
-      };
-  }
+	const statusStr = String(status);
+	switch (statusStr) {
+		case '404':
+			return {
+				title: 'Why am I seeing this page?',
+				content:
+					'The file you are trying to access does not exist. It may have been deleted, moved to another location, or the URL may be incorrect.',
+			};
+		case '403':
+			return {
+				title: 'Why is access denied?',
+				content:
+					'This resource is protected by hotlink protection and can only be accessed from authorized domains. If you are accessing from an external link, please visit the original website directly.',
+			};
+		case '500':
+			return {
+				title: 'Server error',
+				content:
+					'The server encountered an error while processing your request. This is usually temporary. Please try again later, or contact the administrator if the problem persists.',
+			};
+		default:
+			return {
+				title: 'Page unavailable',
+				content: 'The page is temporarily unavailable. Please check your network connection or try again later.',
+			};
+	}
 }
 
 /**
  * 获取错误图标 SVG
  */
 function getErrorIllustration(status: number): string {
-  if (status === 404) {
-    return `
+	if (status === 404) {
+		return `
       <!-- 404 - Document with X -->
       <rect class="line-anim" x="60" y="40" width="80" height="100" rx="4" style="animation-delay: 0s;"/>
       <line class="line-anim" x1="75" y1="60" x2="125" y2="60" style="animation-delay: 0.3s;"/>
@@ -49,37 +48,35 @@ function getErrorIllustration(status: number): string {
       <line class="line-anim" x1="85" y1="110" x2="115" y2="130" stroke-width="2" style="animation-delay: 0.7s;"/>
       <line class="line-anim" x1="115" y1="110" x2="85" y2="130" stroke-width="2" style="animation-delay: 0.8s;"/>
     `;
-  } else if (status === 403) {
-    return `
+	} else if (status === 403) {
+		return `
       <!-- 403 - Lock -->
       <rect class="line-anim" x="70" y="95" width="60" height="65" rx="4" style="animation-delay: 0.3s;"/>
       <path class="line-anim" d="M 85 95 L 85 75 Q 85 55 100 55 Q 115 55 115 75 L 115 95" style="animation-delay: 0s;"/>
       <circle class="line-anim" cx="100" cy="120" r="8" style="animation-delay: 0.6s;"/>
       <line class="line-anim" x1="100" y1="128" x2="100" y2="145" style="animation-delay: 0.8s;"/>
     `;
-  } else {
-    return `
+	} else {
+		return `
       <!-- 500 - Warning Triangle -->
       <path class="line-anim" d="M 100 40 L 160 150 L 40 150 Z" style="animation-delay: 0s;"/>
       <line class="line-anim" x1="100" y1="80" x2="100" y2="115" stroke-width="2.5" style="animation-delay: 0.5s;"/>
       <circle class="line-anim" cx="100" cy="130" r="4" fill="currentColor" style="animation-delay: 0.8s;"/>
     `;
-  }
+	}
 }
 
 /**
  * 生成错误页面 HTML
  */
 export function generateErrorPage(status: number, title: string): string {
-  const helpInfo = getHelpText(status);
-  const currentYear = getCurrentYear();
-  const illustration = getErrorIllustration(status);
+	const helpInfo = getHelpText(status);
+	const currentYear = getCurrentYear();
+	const illustration = getErrorIllustration(status);
 
-  const navLinksHtml = NAV_LINKS.map((link) => `<a href="${link.url}">${link.name}</a>`).join(
-    '\n      <span>|</span>\n      '
-  );
+	const navLinksHtml = NAV_LINKS.map((link) => `<a href="${link.url}">${link.name}</a>`).join('\n      <span>|</span>\n      ');
 
-  return `
+	return `
 <!DOCTYPE html>
 <html lang="en">
 <head>

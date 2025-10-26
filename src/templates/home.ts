@@ -1,18 +1,16 @@
-import { getCurrentYear } from "../utils/format";
-import { NAV_LINKS } from "../constants";
+import { getCurrentYear } from '../utils/format';
+import { NAV_LINKS } from '../constants';
 
 /**
  * 生成主页 HTML
  */
 export function generateHomePage(): string {
-  const currentYear = getCurrentYear();
-  const imagesList = JSON.stringify([]);
+	const currentYear = getCurrentYear();
+	const imagesList = JSON.stringify([]);
 
-  const navLinksHtml = NAV_LINKS.map((link) => `<a href="${link.url}">${link.name}</a>`).join(
-    '\n      <span>|</span>\n      '
-  );
+	const navLinksHtml = NAV_LINKS.map((link) => `<a href="${link.url}">${link.name}</a>`).join('\n      <span>|</span>\n      ');
 
-  return `
+	return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
