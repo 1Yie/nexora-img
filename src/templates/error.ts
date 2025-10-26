@@ -85,11 +85,7 @@ export function generateErrorPage(status: number, title: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${status} ${title}</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     html {
       scrollbar-gutter: stable;
