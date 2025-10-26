@@ -352,6 +352,10 @@ export function generateErrorPage(status: number, title: string): string {
       .powered-by a:hover {
         color: #c0c0c0;
       }
+
+      ::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.3); }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+      * { scrollbar-color: rgba(255,255,255,0.3) transparent; }
     }
   </style>
 </head>

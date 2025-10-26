@@ -14,6 +14,13 @@ export function generateImageViewPage(filePath: string): string {
   <title>${filePath} - Nexora</title>
   <style>
  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scrollbar-gutter: stable; }
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track { background: transparent; margin: 0; }
+    ::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.3); border-radius: 4px; border: none; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.4); }
+    ::-webkit-scrollbar-corner { background: transparent; }
+    * { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
@@ -33,7 +40,7 @@ export function generateImageViewPage(filePath: string): string {
       color: #1a1a1a;
       text-decoration: none;
       padding: 0.75rem 1.25rem;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 8px;
@@ -43,14 +50,14 @@ export function generateImageViewPage(filePath: string): string {
       align-items: center;
       gap: 0.5rem;
       z-index: 10;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       opacity: 1;
       transform: translateY(0);
     }
 
     .back-link:hover {
-      background: rgba(255, 255, 255, 1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     .back-link.hidden {
@@ -127,7 +134,7 @@ export function generateImageViewPage(filePath: string): string {
       left: 50%;
       transform: translateX(-50%) translateY(0);
       color: #1a1a1a;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 1rem 1.5rem;
@@ -140,11 +147,12 @@ export function generateImageViewPage(filePath: string): string {
       user-select: none;
       transition: all 0.3s ease;
       opacity: 1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .image-info:hover {
-      background: rgba(255, 255, 255, 1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     .image-info:active {
@@ -161,7 +169,7 @@ export function generateImageViewPage(filePath: string): string {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       color: #1a1a1a;
@@ -172,7 +180,7 @@ export function generateImageViewPage(filePath: string): string {
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       z-index: 1000;
     }
 
@@ -187,13 +195,14 @@ export function generateImageViewPage(filePath: string): string {
       left: 50%;
       transform: translateX(-50%);
       border: 6px solid transparent;
-      border-top-color: rgba(255, 255, 255, 0.95);
+      border-top-color: rgba(255, 255, 255, 0.6);
     }
 
     @media (prefers-color-scheme: dark) {
       body { background: #1a1a1a; }
-      .back-link, .image-info { color: white; background: rgba(0,0,0,0.7); }
-      .tooltip { background: rgba(0,0,0,0.8); color: white; }
+      .back-link, .image-info, .tooltip { color: white; background: rgba(50, 50, 50, 0.85); }
+      .back-link:hover, .image-info:hover { background: rgba(70, 70, 70, 0.95); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
+      .tooltip::after { border-top-color: rgba(50, 50, 50, 0.85); }
       img { box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
       .skeleton {
         background: linear-gradient(
@@ -204,6 +213,9 @@ export function generateImageViewPage(filePath: string): string {
         );
         background-size: 200% 100%;
       }
+      ::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.3); }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+      * { scrollbar-color: rgba(255,255,255,0.3) transparent; }
     }
   </style>
 </head>
