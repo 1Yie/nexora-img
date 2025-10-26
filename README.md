@@ -4,7 +4,7 @@
 
 ## 📚 文档导航
 
-- **[快速开始指南 (QUICKSTART.md)](./QUICKSTART.md)** - 配置和部署步骤
+- **[🚀 快速配置指南](./QUICKSTART.md)**
 
 ## 项目结构
 
