@@ -2,9 +2,9 @@
 
 基于 Cloudflare Workers 和 R2 存储的图片托管服务。
 
-## 📚 文档导航
+## 文档导航
 
-- **[🚀 快速配置指南](./QUICKSTART.md)**
+- **[快速配置指南](./QUICKSTART.md)**
 
 ## 项目结构
 
