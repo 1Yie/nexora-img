@@ -1,63 +1,7 @@
 {
-	"en": {
-		"name": "English",
-		"nativeName": "English",
-		"translations": {
-			"nav": {
-				"home": "Home",
-				"blog": "Blog",
-				"about": "About",
-				"status": "Status",
-				"monitor": "Monitor"
-			},
-			"pageTitles": {
-				"home": "Nexora",
-				"imageView": "{{fileName}} - Nexora",
-				"error": "Error - Nexora"
-			},
-			"home": {
-				"title": "Nexora",
-				"subtitle": "A modern image gallery powered by Cloudflare",
-				"loading": "Loading gallery...",
-				"noImages": "No images found",
-				"stats": "Images loaded"
-			},
-			"imageView": {
-				"backToGallery": "Back to Gallery",
-				"copied": "Copied!",
-				"copyFailed": "Copy failed"
-			},
-			"error": {
-				"titles": {
-					"404": "Page Not Found",
-					"403": "Access Denied",
-					"500": "Server Error",
-					"default": "Page Unavailable",
-					"help": "What happened?"
-				},
-				"messages": {
-					"404": "The file you are trying to access does not exist. It may have been deleted, moved to another location, or the URL may be incorrect.",
-					"403": "This resource is protected by hotlink protection and can only be accessed from authorized domains. If you are accessing from an external link, please visit the original website directly.",
-					"500": "The server encountered an error while processing your request. This is usually temporary. Please try again later, or contact the administrator if the problem persists.",
-					"default": "The page is temporarily unavailable. Please check your network connection or try again later."
-				},
-				"backToHome": "Back to Home"
-			},
-			"footer": {
-				"copyright": "Copyright © {{year}} {{author}}",
-				"poweredBy": "Powered by {{provider}}",
-				"openSource": "Open Source on {{platform}}"
-			},
-			"language": {
-				"label": "Language",
-				"switchTo": "Switch to {{language}}",
-				"current": "Current language: {{language}}"
-			}
-		}
-	},
 	"zh-CN": {
 		"name": "Chinese (Simplified)",
-		"nativeName": "中文(简体)",
+		"nativeName": "CN",
 		"translations": {
 			"nav": {
 				"home": "首页",
@@ -111,9 +55,121 @@
 			}
 		}
 	},
+	"zh-TW": {
+		"name": "Chinese (Traditional)",
+		"nativeName": "TC",
+		"translations": {
+			"nav": {
+				"home": "首頁",
+				"blog": "部落格",
+				"about": "關於",
+				"status": "狀態",
+				"monitor": "監控"
+			},
+			"pageTitles": {
+				"home": "Nexora",
+				"imageView": "{{fileName}} - Nexora",
+				"error": "錯誤 - Nexora"
+			},
+			"home": {
+				"title": "Nexora",
+				"subtitle": "由 Cloudflare 驅動的現代圖片庫",
+				"loading": "正在載入圖庫...",
+				"noImages": "未找到圖片",
+				"stats": "已載入圖片"
+			},
+			"imageView": {
+				"backToGallery": "返回圖庫",
+				"copied": "已複製！",
+				"copyFailed": "複製失敗"
+			},
+			"error": {
+				"titles": {
+					"404": "頁面未找到",
+					"403": "存取被拒絕",
+					"500": "伺服器錯誤",
+					"default": "頁面不可用",
+					"help": "發生了什麼事？"
+				},
+				"messages": {
+					"404": "您嘗試存取的檔案不存在。它可能已被刪除、移動到其他位置，或者 URL 不正確。",
+					"403": "此資源受防盜鏈保護，只能從授權網域存取。如果您是從外部連結存取，請直接造訪原始網站。",
+					"500": "伺服器在處理您的請求時遇到錯誤。這通常是暫時的。請稍後重試，如果問題持續存在，請聯絡管理員。",
+					"default": "頁面暫時不可用。請檢查您的網路連線或稍後重試。"
+				},
+				"backToHome": "返回首頁"
+			},
+			"footer": {
+				"copyright": "版權所有 © {{year}} {{author}}",
+				"poweredBy": "技術支援 {{provider}}",
+				"openSource": "開源地址 {{platform}}"
+			},
+			"language": {
+				"label": "語言",
+				"switchTo": "切換到 {{language}}",
+				"current": "目前語言：{{language}}"
+			}
+		}
+	},
+	"en": {
+		"name": "English",
+		"nativeName": "EN",
+		"translations": {
+			"nav": {
+				"home": "Home",
+				"blog": "Blog",
+				"about": "About",
+				"status": "Status",
+				"monitor": "Monitor"
+			},
+			"pageTitles": {
+				"home": "Nexora",
+				"imageView": "{{fileName}} - Nexora",
+				"error": "Error - Nexora"
+			},
+			"home": {
+				"title": "Nexora",
+				"subtitle": "A modern image gallery powered by Cloudflare",
+				"loading": "Loading gallery...",
+				"noImages": "No images found",
+				"stats": "Images loaded"
+			},
+			"imageView": {
+				"backToGallery": "Back to Gallery",
+				"copied": "Copied!",
+				"copyFailed": "Copy failed"
+			},
+			"error": {
+				"titles": {
+					"404": "Page Not Found",
+					"403": "Access Denied",
+					"500": "Server Error",
+					"default": "Page Unavailable",
+					"help": "What happened?"
+				},
+				"messages": {
+					"404": "The file you are trying to access does not exist. It may have been deleted, moved to another location, or the URL may be incorrect.",
+					"403": "This resource is protected by hotlink protection and can only be accessed from authorized domains. If you are accessing from an external link, please visit the original website directly.",
+					"500": "The server encountered an error while processing your request. This is usually temporary. Please try again later, or contact the administrator if the problem persists.",
+					"default": "The page is temporarily unavailable. Please check your network connection or try again later."
+				},
+				"backToHome": "Back to Home"
+			},
+			"footer": {
+				"copyright": "Copyright © {{year}} {{author}}",
+				"poweredBy": "Powered by {{provider}}",
+				"openSource": "Open Source on {{platform}}"
+			},
+			"language": {
+				"label": "Language",
+				"switchTo": "Switch to {{language}}",
+				"current": "Current language: {{language}}"
+			}
+		}
+	},
 	"ja": {
 		"name": "Japanese",
-		"nativeName": "日本語",
+		"nativeName": "JP",
 		"translations": {
 			"nav": {
 				"home": "ホーム",

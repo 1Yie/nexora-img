@@ -147,11 +147,11 @@ export function generateHomePage(
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
-    .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; }
+		.gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; border-radius: 8px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; }
     .gallery-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(-2px); }
-    .gallery-item img { width: 100%; height: auto; display: block; transition: opacity 0.3s ease; opacity: 0; }
+    .gallery-item img { width: 100%; height: auto; display: block; transition: filter 0.3s ease; opacity: 0; }
     .gallery-item img.loaded { opacity: 1; }
-    .gallery-item:hover img { opacity: 0.9; }
+    .gallery-item:hover img { filter: brightness(0.95); }
 
     .skeleton { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s ease-in-out infinite; z-index: 1; }
     .skeleton.hidden { display: none; }
@@ -160,7 +160,7 @@ export function generateHomePage(
     .image-info { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; padding: 1rem 0.75rem 0.75rem; font-size: 0.75rem; opacity: 0; transition: opacity 0.3s ease; word-break: break-all; pointer-events: none; }
     .image-info a { color: white; text-decoration: none; pointer-events: auto; cursor: pointer; }
     .image-info a:hover { color: #ddd; text-decoration: underline; }
-    .gallery-item:hover .image-info { opacity: 1; }
+     .gallery-item:hover .image-info { opacity: 1; }
 
     .loading { display: flex; justify-content: center; align-items: center; padding: 3rem; color: #7a7a7a; flex-direction: column; min-height: 200px; width: 100%; column-span: all; text-align: center; }
 
@@ -285,21 +285,6 @@ export function generateHomePage(
       margin-bottom: 2rem;
     }
 
-    .image-info {
-      text-align: center;
-      padding: 1.5rem;
-      background: #f9f9f9;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .image-info p {
-      margin-bottom: 1rem;
-      color: #1a1a1a;
-      font-size: 0.95rem;
-    }
-
     .image-actions {
       display: flex;
       justify-content: center;
@@ -345,12 +330,50 @@ export function generateHomePage(
     .lightbox-close:hover { background: rgb(255 255 255 / 40%); transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
     .lightbox-close svg { stroke: white; pointer-events: none; }
 
-    @media (max-width: 1200px) { .gallery { column-count: 3; } }
+    @media (max-width: 1200px) { 
+      .gallery { column-count: 3; }
+      .language-switcher {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 0;
+        order: 1;
+      }
+      
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-links {
+        order: 0;
+      }
+      
+      .language-switcher {
+        order: 1;
+      }
+    }
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
       .logo-illustration { width: 120px; height: 120px; margin-bottom: 1.5rem; }
       .gallery { column-count: 2; }
       .nav-links { gap: 1rem; }
+      .language-switcher {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+      
+      .language-switcher button {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.5rem;
+      }
+      
+      .language-switcher span {
+        display: none;
+      }
     }
     @media (max-width: 480px) { .gallery { column-count: 1; } body { padding: 1rem; } }
 
@@ -412,15 +435,6 @@ export function generateHomePage(
         color: #b0b0b0;
       }
 
-      /* 图片详情页面暗色主题样式 */
-      .image-info {
-        background: #2a2a2a;
-      }
-
-      .image-info p {
-        color: #fafafa;
-      }
-
       .image-actions a {
         color: #fafafa;
         border-color: #fafafa;
@@ -467,19 +481,7 @@ export function generateHomePage(
     ${
 			pageType === 'error' && pageData && 'status' in pageData
 				? `<div class="error-illustration">\n        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">\n          <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="2" opacity="0.1"/>\n          <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="1.5"/>\n          <path d="M70 120 Q100 140 130 120" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>\n          <circle cx="85" cy="95" r="3" fill="currentColor"/>\n          <circle cx="115" cy="95" r="3" fill="currentColor"/>\n          <text x="100" y="165" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.7">${pageData.status}</text>\n        </svg>\n      </div>\n\n      <h1>${t(`error.titles.${pageData.status}`) || t('error.titles.default')}</h1>\n\n      <div class="divider"></div>\n\n      <div class="help-section">\n        <h3>${t('error.titles.help') || 'Help'}</h3>\n        <p>${t(`error.messages.${pageData.status}`) || t('error.messages.default')}</p>\n      </div>\n\n      <div class="nav-links">\n        <a href="/">${t('error.backToHome')}</a>\n      </div>`
-				: pageType === 'image' && pageData && 'imagePath' in pageData
-					? `<div class="image-view">
-        <img id="main-image" src="/${pageData.imagePath}?raw=true" alt="${pageData.imagePath}" style="max-width: 100%; max-height: 80vh; object-fit: contain;" />
-        <div class="image-info">
-          <p><strong>${t('image.filename')}:</strong> ${pageData.imagePath}</p>
-          <div class="image-actions">
-            <a href="/${pageData.imagePath}?raw=true" target="_blank">${t('image.viewOriginal')}</a>
-            <span>|</span>
-            <a href="/">${t('image.backToGallery')}</a>
-          </div>
-        </div>
-      </div>`
-					: `<div class="loading">${t('home.loading')}</div>`
+				: `<div class="loading">${t('home.loading')}</div>`
 		}
   </div>
 
@@ -585,7 +587,7 @@ export function generateHomePage(
               <div class="skeleton"></div>
               <img src="/\${img.key}?raw=true" alt="\${img.key}" loading="lazy">
               <div class="image-info">
-                <div><a href="/\${img.key}" target="_self" rel="noopener noreferrer">\${img.key}</a></div>
+                <div><a href="/\${img.key}" target="_blank" rel="noopener noreferrer">\${img.key}</a></div>
                 <div>\${formatSize(img.size)}</div>
               </div>
             \`;

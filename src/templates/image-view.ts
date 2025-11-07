@@ -237,7 +237,7 @@ export function generateImageViewPage(filePath: string): string {
   <div class="image-info" onclick="copyToClipboard()">
     ${filePath}
   </div>
-  <div class="tooltip" id="tooltip">Copied!</div>
+  <div class="tooltip" id="tooltip">${t('imageView.copied')}</div>
   <script>
     const mainImage = document.getElementById('mainImage');
     const skeleton = document.getElementById('skeleton');

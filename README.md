@@ -24,9 +24,13 @@ nexora-img/
 │   │   ├── api.ts              # API 请求处理器
 │   │   └── image.ts            # 图片请求处理器
 │   ├── templates/
-│   │   ├── home.ts             # 主页 HTML 模板（统一入口）
-│   │   ├── error.ts            # 错误页面内容片段
-│   │   └── image-view.ts       # 图片详情页内容片段
+│   ├── home.ts             # 主页 HTML 模板（统一入口）
+│   └── image-view.ts       # 图片详情页内容片段
+├── i18n/                   # 国际化配置
+│   ├── README.md           # i18n 文档
+│   ├── index.ts            # i18n 核心实现
+│   ├── languages.json      # 语言配置
+│   └── translations.ts     # 翻译数据导出
 │   └── router/
 │       └── index.ts            # 路由主控制器
 ├── test/
@@ -48,6 +52,7 @@ nexora-img/
 - ✅ 深色模式支持
 - ✅ 图片链接复制
 - ✅ 错误页面美化
+- ✅ 国际化支持（i18n） - 支持英语、简体中文、繁体中文、日语
 
 ## 文件分层说明
 
@@ -82,6 +87,11 @@ nexora-img/
 ### 7. **类型层** (`src/types/`)
 - TypeScript 类型定义
 - 接口定义
+
+### 8. **国际化层** (`src/i18n/`)
+- 多语言支持实现
+- 语言检测和切换
+- 翻译文本管理
 
 ## 配置说明
 
