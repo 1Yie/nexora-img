@@ -1,17 +1,20 @@
 import { BASE_URL } from '../constants';
+import { i18n, t } from '../i18n';
 
 /**
  * 生成图片查看页面 HTML
  */
 export function generateImageViewPage(filePath: string): string {
+	const currentLang = i18n.getCurrentLanguage();
+
 	return `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${currentLang === 'zh-CN' ? 'zh' : 'en'}">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${filePath} - Nexora</title>
+  <title>${t('pageTitles.imageView', { fileName: filePath })}</title>
   <style>
  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html { scrollbar-gutter: stable; }
@@ -225,7 +228,7 @@ export function generateImageViewPage(filePath: string): string {
       <line x1="19" y1="12" x2="5" y2="12"></line>
       <polyline points="12 19 5 12 12 5"></polyline>
     </svg>
-    Back to Gallery
+    ${t('imageView.backToGallery')}
   </a>
   <div class="image-container">
     <div class="skeleton" id="skeleton"></div>
@@ -240,6 +243,10 @@ export function generateImageViewPage(filePath: string): string {
     const skeleton = document.getElementById('skeleton');
     const backLink = document.querySelector('.back-link');
     const imageInfo = document.querySelector('.image-info');
+    const translations = {
+      copied: "${t('imageView.copied')}",
+      copyFailed: "${t('imageView.copyFailed')}"
+    };
 
     mainImage.addEventListener('load', () => {
       mainImage.classList.add('loaded');
@@ -279,11 +286,11 @@ export function generateImageViewPage(filePath: string): string {
         }, 2000);
       }).catch(err => {
         console.error('Failed to copy:', err);
-        tooltip.textContent = 'Copy failed';
+        tooltip.textContent = translations.copyFailed;
         tooltip.classList.add('show');
         setTimeout(() => {
           tooltip.classList.remove('show');
-          tooltip.textContent = 'Copied!';
+          tooltip.textContent = translations.copied;
         }, 2000);
       });
     }

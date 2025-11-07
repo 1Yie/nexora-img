@@ -24,9 +24,9 @@ nexora-img/
 │   │   ├── api.ts              # API 请求处理器
 │   │   └── image.ts            # 图片请求处理器
 │   ├── templates/
-│   │   ├── home.ts             # 主页 HTML 模板
-│   │   ├── error.ts            # 错误页面 HTML 模板
-│   │   └── image-view.ts       # 图片查看页面 HTML 模板
+│   │   ├── home.ts             # 主页 HTML 模板（统一入口）
+│   │   ├── error.ts            # 错误页面内容片段
+│   │   └── image-view.ts       # 图片详情页内容片段
 │   └── router/
 │       └── index.ts            # 路由主控制器
 ├── test/
@@ -66,9 +66,9 @@ nexora-img/
 - `image.ts` - 处理图片文件请求
 
 ### 4. **模板层** (`src/templates/`)
-- `home.ts` - 主页 HTML
-- `error.ts` - 错误页面 HTML
-- `image-view.ts` - 图片查看页 HTML
+- `home.ts` - 主页 HTML 模板（统一入口，调用其他模板）
+- `error.ts` - 错误页面内容片段生成
+- `image-view.ts` - 图片详情页内容片段生成
 
 ### 5. **工具层** (`src/utils/`)
 - `domain.ts` - 域名验证

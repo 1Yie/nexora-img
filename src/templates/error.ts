@@ -1,6 +1,7 @@
 import { HelpText } from '../types';
 import { getCurrentYear } from '../utils/format';
 import { NAV_LINKS } from '../constants';
+import { i18n, t } from '../i18n';
 
 /**
  * 获取错误页面的帮助文本
@@ -10,26 +11,23 @@ function getHelpText(status: number): HelpText {
 	switch (statusStr) {
 		case '404':
 			return {
-				title: 'Why am I seeing this page?',
-				content:
-					'The file you are trying to access does not exist. It may have been deleted, moved to another location, or the URL may be incorrect.',
+				title: t('error.titles.404'),
+				content: t('error.messages.404'),
 			};
 		case '403':
 			return {
-				title: 'Why is access denied?',
-				content:
-					'This resource is protected by hotlink protection and can only be accessed from authorized domains. If you are accessing from an external link, please visit the original website directly.',
+				title: t('error.titles.403'),
+				content: t('error.messages.403'),
 			};
 		case '500':
 			return {
-				title: 'Server error',
-				content:
-					'The server encountered an error while processing your request. This is usually temporary. Please try again later, or contact the administrator if the problem persists.',
+				title: t('error.titles.500'),
+				content: t('error.messages.500'),
 			};
 		default:
 			return {
-				title: 'Page unavailable',
-				content: 'The page is temporarily unavailable. Please check your network connection or try again later.',
+				title: t('error.titles.default'),
+				content: t('error.messages.default'),
 			};
 	}
 }
@@ -69,21 +67,30 @@ function getErrorIllustration(status: number): string {
 /**
  * 生成错误页面 HTML
  */
-export function generateErrorPage(status: number, title: string): string {
+export function generateErrorPage(status: number, title: string, lang: string = 'en'): string {
+	i18n.setLanguage(lang as any);
 	const helpInfo = getHelpText(status);
 	const currentYear = getCurrentYear();
 	const illustration = getErrorIllustration(status);
 
 	const navLinksHtml = NAV_LINKS.map((link) => `<a href="${link.url}">${link.name}</a>`).join('\n      <span>|</span>\n      ');
 
+	// 语言切换器
+	const languageSwitcher = `
+    <div class="language-switcher">
+      <a href="?lang=en" class="${lang === 'en' ? 'active' : ''}" title="${t('language.switchTo', { language: 'English' })}">EN</a>
+      <span>|</span>
+      <a href="?lang=zh-CN" class="${lang === 'zh-CN' ? 'active' : ''}" title="${t('language.switchTo', { language: '中文' })}">中文</a>
+    </div>`;
+
 	return `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang === 'zh-CN' ? 'zh-CN' : 'en'}">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${status} ${title}</title>
+  <title>${t('pageTitles.error')}</title>
   <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
@@ -282,8 +289,37 @@ export function generateErrorPage(status: number, title: string): string {
       transition: color 0.3s ease;
     }
 
-    .powered-by a:hover {
-      color: #5a5a5a;
+    .language-switcher {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .language-switcher a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .language-switcher a.active {
+      background: #1a1a1a;
+      color: #fafafa;
+    }
+
+    .language-switcher a:not(.active):hover {
+      background: #f0f0f0;
+    }
+
+    .language-switcher span {
+      color: #d0d0d0;
+      user-select: none;
     }
 
     @media (max-width: 768px) {
@@ -301,8 +337,10 @@ export function generateErrorPage(status: number, title: string): string {
         font-size: 1.1rem;
       }
 
-      .nav-links {
-        gap: 1rem;
+      .language-switcher {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.8rem;
       }
     }
 
@@ -359,9 +397,14 @@ export function generateErrorPage(status: number, title: string): string {
         color: #c0c0c0;
       }
 
-      ::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.3); }
-      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
-      * { scrollbar-color: rgba(255,255,255,0.3) transparent; }
+      .language-switcher a.active {
+        background: #fafafa;
+        color: #1a1a1a;
+      }
+
+      .language-switcher a:not(.active):hover {
+        background: #3a3a3a;
+      }
     }
   </style>
 </head>
@@ -377,6 +420,8 @@ export function generateErrorPage(status: number, title: string): string {
     <div class="divider"></div>
     <h2>${title}</h2>
 
+    ${languageSwitcher}
+
     <div class="help-section">
       <h3>${helpInfo.title}</h3>
       <p>${helpInfo.content}</p>
@@ -386,9 +431,9 @@ export function generateErrorPage(status: number, title: string): string {
       ${navLinksHtml}
     </div>
 
-    <p class="copyright">Copyright © ${currentYear} ichiyo</p>
-    <p class="powered-by">Powered by <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare</a></p>
-    <p class="powered-by">Open Source on <a href="https://github.com/1Yie/nexora-img" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    <p class="copyright">${t('footer.copyright', { year: currentYear, author: '<a href="https://ichiyo.in" target="_blank" rel="noopener noreferrer">ichiyo</a>' })}</p>
+    <p class="powered-by">${t('footer.poweredBy', { provider: '<a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare</a>' })}</p>
+    <p class="powered-by">${t('footer.openSource', { platform: '<a href="https://github.com/1Yie/nexora-img" target="_blank" rel="noopener noreferrer">GitHub</a>' })}</p>
   </div>
 </body>
 </html>
