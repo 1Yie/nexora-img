@@ -390,7 +390,11 @@ export function generateHomePage(
       .stats, .copyright { color: #7a7a7a; }
       .powered-by { color: #9a9a9a; }
       .powered-by a:hover { color: #c0c0c0; }
+
       .language-switcher a.active,
+			.language-switcher button {
+				color: #fafafa;
+			}
       .language-switcher button.active {
         background: #fafafa;
         color: #1a1a1a;
