@@ -172,7 +172,8 @@ export function generateImageViewPage(filePath: string): string {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       color: #1a1a1a;
@@ -183,7 +184,6 @@ export function generateImageViewPage(filePath: string): string {
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       z-index: 1000;
     }
 
@@ -198,7 +198,7 @@ export function generateImageViewPage(filePath: string): string {
       left: 50%;
       transform: translateX(-50%);
       border: 6px solid transparent;
-      border-top-color: rgba(255, 255, 255, 0.6);
+      border-top-color: rgba(255, 255, 255, 0.95);
     }
 
     @media (prefers-color-scheme: dark) {

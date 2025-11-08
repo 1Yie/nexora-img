@@ -330,7 +330,7 @@ export function generateHomePage(
     .lightbox-close:hover { background: rgb(255 255 255 / 40%); transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
     .lightbox-close svg { stroke: white; pointer-events: none; }
 
-    @media (max-width: 1200px) { 
+    @media (max-width: 1200px) {
       .gallery { column-count: 3; }
       .language-switcher {
         position: relative;
@@ -341,17 +341,17 @@ export function generateHomePage(
         margin: 1rem 0 0;
         order: 1;
       }
-      
+
       .header {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-      
+
       .nav-links {
         order: 0;
       }
-      
+
       .language-switcher {
         order: 1;
       }
@@ -365,12 +365,12 @@ export function generateHomePage(
         flex-wrap: wrap;
         gap: 0.25rem;
       }
-      
+
       .language-switcher button {
         font-size: 0.85rem;
         padding: 0.25rem 0.5rem;
       }
-      
+
       .language-switcher span {
         display: none;
       }
@@ -587,7 +587,7 @@ export function generateHomePage(
               <div class="skeleton"></div>
               <img src="/\${img.key}?raw=true" alt="\${img.key}" loading="lazy">
               <div class="image-info">
-                <div><a href="/\${img.key}" target="_blank" rel="noopener noreferrer">\${img.key}</a></div>
+                <div><a href="/\${img.key}" target="_self" rel="noopener noreferrer">\${img.key}</a></div>
                 <div>\${formatSize(img.size)}</div>
               </div>
             \`;
